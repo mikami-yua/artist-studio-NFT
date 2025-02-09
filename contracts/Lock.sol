@@ -11,6 +11,7 @@ contract Lock {
     event Withdrawal(uint amount, uint when);
 
     constructor(uint _unlockTime) payable {
+        // 要求当前区块的时间戳小于传入的时间
         require(
             block.timestamp < _unlockTime,
             "Unlock time should be in the future"
