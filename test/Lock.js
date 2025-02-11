@@ -19,7 +19,9 @@ describe("Lock", function () {
     // Contracts are deployed using the first signer/account by default
     const [owner, otherAccount] = await ethers.getSigners();
 
+    // 拿到合约的abi
     const Lock = await ethers.getContractFactory("Lock");
+    // 部署时传入参数
     const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
 
     return { lock, unlockTime, lockedAmount, owner, otherAccount };
@@ -27,6 +29,7 @@ describe("Lock", function () {
 
   describe("Deployment", function () {
     it("Should set the right unlockTime", async function () {
+      // loadFixture 测试框架的函数
       const { lock, unlockTime } = await loadFixture(deployOneYearLockFixture);
 
       expect(await lock.unlockTime()).to.equal(unlockTime);
