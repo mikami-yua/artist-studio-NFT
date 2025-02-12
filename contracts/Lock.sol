@@ -36,4 +36,13 @@ contract Lock {
         // 提款逻辑：调用owner的transfer方法（向owner转账），把当前合约address(this)的余额转账给owner
         owner.transfer(address(this).balance);
     }
+
+    string public message = "Hello World";
+    event SetMessage(string new_msg);
+    function setMessage(string memory _msg) external{
+        message = _msg;
+        emit SetMessage(_msg);
+    }
 }
+
+// 

@@ -125,5 +125,20 @@ describe("Lock", function () {
         );
       });
     });
+
+
+    describe("message",function(){
+      it("Should get the right message",async function(){
+        const{lock,owner}=await loadFixture(deployOneYearLockFixture);
+        expect(await lock.message()).to.equal("Hello World");
+      });
+      it("Should set the right message",async function(){
+        // 合约部署
+        const{lock,unlockTime,lockedAmount,owner}= await loadFixture(deployOneYearLockFixture);
+        // 使用set函数
+        await expect(lock.setMessage("mmmmm")).to.emit(lock,"SetMessage").withArgs("mmmmm");
+        await expect(await lock.message()).to.equal("mmmmm")
+      });  
+    });
   });
 });
