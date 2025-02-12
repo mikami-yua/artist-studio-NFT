@@ -43,27 +43,25 @@ function App() {
     //await provider.send("eth_requestAccounts", []);
 
     // 写操作需要签名
-    const signer = provider.getSigner();
+    const signer =await provider.getSigner();
 
     const lock = new ethers.Contract("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512", Lock.abi, signer);
-    try{
-      let transaction =await lock.connect(signer).setMessage("world hello!");
-      const tx =await transaction.wait(1);
-      const log = tx.logs[0]; // 假设第一个日志是目标事件
+    
+    let transaction =await lock.connect(signer).setMessage("world hello!");
+    const tx =await transaction.wait(1);
+    const log = tx.logs[0]; // 假设第一个日志是目标事件
 
-      try {
-        // 使用合约接口解析日志，确保事件格式正确
-        const event = lock.interface.parseLog(log);
-        const value = event.args[0];
-        const message = value.toString();
+    try {
+      // 使用合约接口解析日志，确保事件格式正确
+      const event = lock.interface.parseLog(log);
+      const value = event.args[0];
+      const message = value.toString();
 
-        alert(message); // 弹出事件中的消息
-      } catch (error) {
-        console.error("Failed to parse event log:", error);
-      }
-    }catch(e){
-      console.log(e)
+      alert(message); // 弹出事件中的消息
+    } catch (error) {
+      console.error("Failed to parse event log:", error);
     }
+    
     
     
   }
