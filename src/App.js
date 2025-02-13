@@ -35,7 +35,6 @@ function App() {
     const message = await lock.message();
     alert(message)
   }
-
   const setMessage = async () => {
 
     const provider = new ethers.BrowserProvider(window.ethereum)
@@ -75,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
