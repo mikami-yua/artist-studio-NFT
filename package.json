@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,7 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "htest": "npx hardhat test",
-    "hdeploy": "npx hardhat ignition deploy ./ignition/modules/Lock.js --network localhost"
+    "hdeploy": "npx hardhat ignition deploy ./ignition/modules/Lock.js --network localhost",
+    "compile": "npx hardhat compile"
   },
   "eslintConfig": {
     "extends": [
